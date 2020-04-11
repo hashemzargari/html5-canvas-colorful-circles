@@ -10,12 +10,13 @@ function Circle(x, y, r, dx, dy){
     this.r=r;
     this.dx=dx;
     this.dy=dy;
+    this.color = colorArray[Math.floor(Math.random()*colorArray.length)]
+    this.minR = minR;
 
     this.draw = function() {
         c.beginPath();
         c.arc(this.x, this.y, this.r, 0, Math.PI*2, false);
-        c.strokeStyle="blue";
-        c.stroke();
+        c.fillStyle = this.color;
         c.fill();
     }
 
@@ -34,9 +35,9 @@ function Circle(x, y, r, dx, dy){
         // interavtivity
          if(mouse.x - this.x < 50 && mouse.x - this.x > -50 && mouse.y - this.y < 50 && mouse.y - this.y > -50){
              if(this.r<maxR){
-                 this.r+=1;
+                 this.r+=3;
              }
-         }else if(this.r>minR){
+         }else if(this.r>this.minR){
              this.r-=1;
          }
 
@@ -55,6 +56,15 @@ var mouse = {
 maxR = 40;
 minR = 3;
 
+// Colors
+var colorArray =[
+    '#ffaa33',
+    '#99ffaaa',
+    '#00ff00',
+    '#4411aa',
+    '#ff1100',
+]
+
 // add listener to mouse move
 window.addEventListener('mousemove',
     function(event){
@@ -64,12 +74,12 @@ window.addEventListener('mousemove',
 
 var circleArray =[];
 
-for (var i=0; i<100;i++){
+for (var i=0; i<800;i++){
     var x = Math.random()*(innerWidth-r*2)+r;
     var y = Math.random()*(innerHeight-r*2)+r;
-    var r = 30;
-    var dx = (Math.random()-0.5)*4;
-    var dy = (Math.random()-0.5)*4;
+    var r = (Math.random()*3)+1;
+    var dx = (Math.random()-0.5)*6;
+    var dy = (Math.random()-0.5)*6;
     circleArray.push(new Circle(x, y, r, dx, dy));
 }
 
