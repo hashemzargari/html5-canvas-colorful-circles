@@ -16,6 +16,7 @@ function Circle(x, y, r, dx, dy){
         c.arc(this.x, this.y, this.r, 0, Math.PI*2, false);
         c.strokeStyle="blue";
         c.stroke();
+        c.fill();
     }
 
     this.update = function(){
@@ -30,12 +31,36 @@ function Circle(x, y, r, dx, dy){
         this.x+=this.dx;
         this.y+=this.dy;
 
+        // interavtivity
+         if(mouse.x - this.x < 50 && mouse.x - this.x > -50 && mouse.y - this.y < 50 && mouse.y - this.y > -50){
+             if(this.r<maxR){
+                 this.r+=1;
+             }
+         }else if(this.r>minR){
+             this.r-=1;
+         }
+
 
         this.draw();
     }
 }
 
+// Mouse x, y
+var mouse = {
+    x: undefined,
+    y: undefined,
+}
 
+// MAX and MIN radious
+maxR = 40;
+minR = 3;
+
+// add listener to mouse move
+window.addEventListener('mousemove',
+    function(event){
+        mouse.x = event.x;
+        mouse.y = event.y;   
+});
 
 var circleArray =[];
 
@@ -43,8 +68,8 @@ for (var i=0; i<100;i++){
     var x = Math.random()*(innerWidth-r*2)+r;
     var y = Math.random()*(innerHeight-r*2)+r;
     var r = 30;
-    var dx = (Math.random()-0.5)*8;
-    var dy = (Math.random()-0.5)*8;
+    var dx = (Math.random()-0.5)*4;
+    var dy = (Math.random()-0.5)*4;
     circleArray.push(new Circle(x, y, r, dx, dy));
 }
 
