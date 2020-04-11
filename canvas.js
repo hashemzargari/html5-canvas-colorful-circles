@@ -58,11 +58,11 @@ minR = 3;
 
 // Colors
 var colorArray =[
-    '#ffaa33',
-    '#99ffaaa',
-    '#00ff00',
-    '#4411aa',
-    '#ff1100',
+    '#A7C8F2',
+    '#048ABF',
+    '#027368',
+    '#025951',
+    '#F25116',
 ]
 
 // add listener to mouse move
