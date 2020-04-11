@@ -72,16 +72,14 @@ window.addEventListener('mousemove',
         mouse.y = event.y;   
 });
 
-var circleArray =[];
-
-for (var i=0; i<800;i++){
-    var x = Math.random()*(innerWidth-r*2)+r;
-    var y = Math.random()*(innerHeight-r*2)+r;
-    var r = (Math.random()*3)+1;
-    var dx = (Math.random()-0.5)*6;
-    var dy = (Math.random()-0.5)*6;
-    circleArray.push(new Circle(x, y, r, dx, dy));
-}
+// add listener to resize
+window.addEventListener('resize',
+    function(){
+        canvas.width = this.window.innerWidth
+        canvas.height = this.window.innerHeight
+        
+        init();
+});
 
 
 function animate(){
@@ -94,4 +92,20 @@ function animate(){
 
 }
 
+// Init circles
+var circleArray =[];
+
+function init(){
+    circleArray = [];
+    for (var i=0; i<800;i++){
+        var x = Math.random()*(innerWidth-r*2)+r;
+        var y = Math.random()*(innerHeight-r*2)+r;
+        var r = (Math.random()*3)+1;
+        var dx = (Math.random()-0.5)*6;
+        var dy = (Math.random()-0.5)*6;
+        circleArray.push(new Circle(x, y, r, dx, dy));
+    }
+}
+
+init();
 animate();
